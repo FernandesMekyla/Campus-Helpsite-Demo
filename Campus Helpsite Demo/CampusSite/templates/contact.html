@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Contact </h1>
+<p>If you need further assistance, please reach out to us through the following methods:</p>
+<ul>
+    <li><strong>Email: helpdesk@college.ac.uk</strong></li>
+    <li><strong>Phone: +44 1234 567890</strong> </li>
+    <li><strong>Visit us:</strong> Campus Helpdesk, Building A, Room 101</li>
+</ul>
+
+<h2>Message form</h2>
+
+<form method="post" action="{{ url_for('thanks') }}">
+    <label>Name</label>
+    <input type="text" name="name" required>
+    <label>StudentID</label>
+    <input type="text" name="student_id" required>
+    <label>Issue Type</label>
+    <select name="issue_type" required>
+        <option value="password_reset">Password Reset</option>
+        <option value="software_installation">Software Installation</option>
+        <option value="network_issues">Network Issues</option>
+        <option value="hardware_support">Hardware Support</option>
+        <option value="account_management">Account Management</option>
+    </select>
+
+    <label>Message</label>
+    <textarea name="message" rows="5" required></textarea>
+    <button type="submit">Submit</button>
+
+</form>
+
+{% endblock %}
