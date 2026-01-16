@@ -17,6 +17,7 @@
     <Name>Campus Helpsite Demo</Name>
     <RootNamespace>Campus Helpsite Demo</RootNamespace>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <WebBrowserPort>5000</WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,6 +29,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.py" />
+    <Compile Include="CampusSite\db.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CampusSite\views.py">
       <SubType>Code</SubType>
     </Compile>
@@ -41,9 +45,12 @@
     <Content Include="CampusSite\static\site.css" />
     <Content Include="CampusSite\templates\base.html" />
     <Content Include="CampusSite\templates\contact.html" />
+    <Content Include="CampusSite\templates\edit.html" />
     <Content Include="CampusSite\templates\index.html" />
+    <Content Include="CampusSite\templates\new.html" />
     <Content Include="CampusSite\templates\services.html" />
     <Content Include="CampusSite\templates\thanks.html" />
+    <Content Include="CampusSite\templates\tickets.html" />
     <Content Include="CampusSite\templates\times.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
