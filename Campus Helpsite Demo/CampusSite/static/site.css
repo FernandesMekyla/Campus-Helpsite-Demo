@@ -68,8 +68,42 @@ input, select, textarea {
     margin: 6px 0 12px;
 }
 
+
+.error {
+    color: #b00020;
+}
+
+.form input, .form textarea, .form select {
+    width: 100%;
+    max-width: 650px;
+}
+
+.tickets {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.ticket {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-radius: 6px;
+}
+
+.status {
+    font-size: 0.9rem;
+    padding-left: 0.5rem;
+}
+
+.desc {
+    margin-top: 0.5rem;
+}
+
 @media (max-width: 820px) {
     .grid {
         grid-template-columns: 1fr;
     }
 }
+
+
