@@ -26,4 +26,23 @@
 <form method="post" action="{{ url_for('delete_ticket', ticket_id=ticket[0]) }}" style="margin-top: 1rem;">
     <button type="submit">Delete Ticket</button>
 </form>
+
+<form>
+    <label>Category</label>
+    <select name="category_id">
+        <option value="">-- Select --</option>
+        {% for c in categories %}
+        <option value="{{ c.CategoryID }}">{{ c.Name }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Assigned to</label>
+    <select name="assigned_to">
+        <option value="">-- Unassigned --</option>
+        {% for s in staff %}
+        <option value="{{ s.StaffID }}">{{ s.FullName }}</option>
+        {% endfor %}
+    </select>
+</form>
+
 {% endblock %}
