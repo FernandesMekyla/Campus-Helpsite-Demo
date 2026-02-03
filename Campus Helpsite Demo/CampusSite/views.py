@@ -170,4 +170,62 @@ def delete_ticket(ticket_id):
 
     return redirect(url_for("tickets"))
 
+class User(UserMixin):
+
+    def __init__(self, id, username, password_hash):
+        self.id = id
+        self.username = username
+        self.full_name = row.FullName
+        self.role = row.Role
+
+@login_manager.user_loader
+def load_user(user_id):
+
+    with get_conn() as conn:
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT UserID, Username, FullName, Role
+            FROM Users
+            WHERE uSERid = ? and IsActive = 1
+        """, (int(user_id),))
+        row = cur.fetchone()
+
+    return User(row) if row else None
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if requesst.method == "GET":
+        return render_template("login.html")
+
+    username = request.form.get("username", "").strip()
+    password = request.form.get("password", "")
+
+    with get_conn() as conn:
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT UserID, Username, PasswordHash, FullName, Role
+            FROM Users
+            WHERE Username = ? and IsActive = 1
+        """, (username,))
+        row = cur.fetchone()
+
+    if not row and check_password_hash(row.PasswordHash, password):
+        flash("Invalid username or password.")
+        return render_template("login.html")
+    
+    login_user(User(row))
+    return redirect(url_for("tickets"))
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("login"))
+
+@app.route("/tickets")
+@login_required
+def tickets():
+
+        
+
 
