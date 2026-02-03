@@ -105,12 +105,12 @@ def new_ticket():
 
     return render_template(
         "new.html", 
-        error=error
-        categories=categories
-        staff=staff
-        title=title
+        error=error,
+        categories=categories,
+        staff=staff,
+        title=title,
         description=desc,
-        )
+    ) 
 
 @app.route("/tickets/edit/<int:ticket_id>", methods=["GET", "POST"])
 def edit_ticket(ticket_id):
