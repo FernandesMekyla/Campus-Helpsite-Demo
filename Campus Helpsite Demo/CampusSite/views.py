@@ -70,7 +70,7 @@ def new_ticket():
         title = request.form.get("title", "").strip()
         desc = request.form.get("description", "").strip()
         category_raw = request.form.get("category_id", "").strip()
-        assigned_raw = reuqest.form.get("assigned_to", "").strip()
+        assigned_raw = request.form.get("assigned_to", "").strip()
 
         if not title or not desc:
             return render_template("new.html", error="Title and Description are required.")
@@ -91,17 +91,17 @@ def new_ticket():
         
     with get_conn() as conn:
                 cur = conn.cursor()
-        categories = cur.execute("""
-            SELECT CategoryID, Name
-            FROM dbo.Categories;
-            ORDER BY Name;
-        """).fetchall()
+                categories = cur.execute("""
+                SELECT CategoryID, Name
+                FROM dbo.Categories;
+                ORDER BY Name;
+                """).fetchall()
 
-        staff = cur.execute("""
-            SELECT StaffID, FullName
-            FROM dbo.staff
-            ORDER BY FullName;)
-        """).fetchall()
+                staff = cur.execute("""
+                SELECT StaffID, FullName
+                FROM dbo.staff
+                ORDER BY FullName;)
+                """).fetchall()
 
     return render_template(
         "new.html", 
@@ -110,7 +110,7 @@ def new_ticket():
         staff=staff
         title=title
         description=desc,
-    )
+        )
 
 @app.route("/tickets/edit/<int:ticket_id>", methods=["GET", "POST"])
 def edit_ticket(ticket_id):
