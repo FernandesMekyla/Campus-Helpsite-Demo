@@ -1,5 +1,8 @@
 from os import error
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_login import LoginManager,UserMixin, login_user, logout_user, login_required
+from werkzeug.security import check_password_hash
+
 from CampusSite.db import get_conn
 
 app = Flask(
@@ -8,6 +11,11 @@ app = Flask(
     template_folder='templates'
 
     )
+
+app.secret_key = "change-me"
+
+login_manager = LoginManager(app)
+login_manager.login_view = "login"
 
 @app.route('/')
 def home():
@@ -161,3 +169,5 @@ def delete_ticket(ticket_id):
         conn.commit()
 
     return redirect(url_for("tickets"))
+
+

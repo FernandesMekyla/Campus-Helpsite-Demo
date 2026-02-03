@@ -32,6 +32,9 @@
     <Compile Include="CampusSite\db.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CampusSite\templates\Make_hash.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CampusSite\views.py">
       <SubType>Code</SubType>
     </Compile>
