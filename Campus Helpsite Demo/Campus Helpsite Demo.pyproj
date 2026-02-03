@@ -50,6 +50,7 @@
     <Content Include="CampusSite\templates\contact.html" />
     <Content Include="CampusSite\templates\edit.html" />
     <Content Include="CampusSite\templates\index.html" />
+    <Content Include="CampusSite\templates\Login.html" />
     <Content Include="CampusSite\templates\new.html" />
     <Content Include="CampusSite\templates\services.html" />
     <Content Include="CampusSite\templates\thanks.html" />
