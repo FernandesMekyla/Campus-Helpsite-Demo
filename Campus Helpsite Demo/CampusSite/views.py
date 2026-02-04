@@ -194,7 +194,7 @@ def load_user(user_id):
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if requesst.method == "GET":
+    if request.method == "GET":
         return render_template("login.html")
 
     username = request.form.get("username", "").strip()
@@ -225,7 +225,4 @@ def logout():
 @app.route("/tickets")
 @login_required
 def tickets():
-
-        
-
-
+    return render_template("tickets.html")
