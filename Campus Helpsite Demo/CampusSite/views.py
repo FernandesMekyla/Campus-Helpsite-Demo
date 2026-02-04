@@ -86,30 +86,30 @@ def new_ticket():
         else:
 
             category_id = validate_fk(category_raw)
-            assigned_to = validate_fk(assigned_raw)
+            staff_id = validate_fk(assigned_raw)
 
         with get_conn() as conn:
             cur = conn.cursor()
             cur.execute(
-                """INSERT INTO dbo.tickets (Title, Description)
-                VALUES (?, ?);
+                """INSERT INTO dbo.tickets (Title, Description, CategoryID, StaffID)
+                VALUES (?, ?, ?, ?);
                 """, (title, desc, category_id, staff_id))
             conn.commit()
         return redirect(url_for("tickets"))
         
     with get_conn() as conn:
-                cur = conn.cursor()
-                categories = cur.execute("""
+        cur = conn.cursor()
+        categories = cur.execute("""
                 SELECT CategoryID, Name
-                FROM dbo.Categories;
+                FROM dbo.Categories
                 ORDER BY Name;
-                """).fetchall()
+        """).fetchall()
 
-                staff = cur.execute("""
+        staff = cur.execute("""
                 SELECT StaffID, FullName
                 FROM dbo.staff
                 ORDER BY FullName;)
-                """).fetchall()
+        """).fetchall()
 
     return render_template(
         "new.html", 
